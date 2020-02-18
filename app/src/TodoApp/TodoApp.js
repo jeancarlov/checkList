@@ -11,40 +11,41 @@ import uuid from 'uuid/v4';
 
 
 function TodoApp() {
-        const initialTodos =[
-            { id:1, task: 'test1', completed:false},
-            { id:2, task: 'test2', completed:true},
-            { id:3, task: 'test3', completed:false}
-        ];
-        //hook
-        const [todos, setTodos] = useState(initialTodos);
 
-        const addTodo = newTodoText => {
-            setTodos([ ...todos, { id: uuid(), task: newTodoText, completed: false}])
-        };
-        const removeTodo= todoId => {
-            // filter out removed todo
-            const updatedTodos = todos.filter(todo => todo.id !== todoId);
-            // call setTodos with new todos array
-            setTodos(updatedTodos)
-        };
+    const initialTodos =[ 
+        { id:1, task: 'test1', completed:false},
+        { id:2, task: 'test2', completed:true},
+        { id:3, task: 'test3', completed:false}
+    ];
+    //hook
+    const [todos, setTodos] = useState(initialTodos);
 
-        const toggleTodo = todoId => { 
+    const addTodo = newTodoText => {
+        setTodos([ ...todos, { id: uuid(), task: newTodoText, completed: false}])
+    };
+    const removeTodo= todoId => {
+        // filter out removed todo
+        const updatedTodos = todos.filter(todo => todo.id !== todoId);
+        // call setTodos with new todos array
+        setTodos(updatedTodos)
+    };
+
+    // const toggleTodo = todoId => { 
+    //     const updatedTodos= todos.map(todo => 
+    //         todo.id === todoId? { ...todo, completed:  !todo.completed} : todo
+    //         );
+    //         setTodos(updatedTodos);
+
+    //Method for updating the editing in the textField for todo 
+        const editTodo = (todoId, newTask) => { 
             const updatedTodos= todos.map(todo => 
-                todo.id === todoId? { ...todo, completed:  !todo.completed} : todo
+                todo.id === todoId? { ...todo, task: newTask} : todo
                 );
                 setTodos(updatedTodos);
-
-        //Method for updating the editing in the textField for todo 
-            const editTodo = (todoId, newTask) => { 
-                const updatedTodos= todos.map(todo => 
-                    todo.id === todoId? { ...todo, task: newTask} : todo
-                    );
-                    setTodos(updatedTodos);
-        
-        }
-        return (
-            <Paper 
+    
+    }
+    return (
+        <Paper 
             style={{
                 padding: 0,
                 margin:0,
@@ -63,14 +64,17 @@ function TodoApp() {
                     <TodoForm addTodo={addTodo}/>
                     <TodoList todos={todos}
                     removeTodo={removeTodo}  
-                    toggleTodo= {toggleTodo}
+                    
                     editTodo= {editTodo}
                     />
                 </Grid>
             </Grid>
-            </Paper>
-        );
-    };
+        </Paper>
+    );
 }
 
+
 export default TodoApp;
+
+
+
