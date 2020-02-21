@@ -23,6 +23,7 @@ import { Paper, List, Divider} from '@material-ui/core';
 // }
 
 function TodoList({ todos, removeTodo, toggleTodo, editTodo}) {
+    if (todos.length)
     return (
         <Paper>
             <List>
@@ -43,7 +44,8 @@ function TodoList({ todos, removeTodo, toggleTodo, editTodo}) {
             ))}
             </List>
         </Paper>
-    )
+    );
+    return null;
 }
 
 export default TodoList;
