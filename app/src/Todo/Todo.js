@@ -16,7 +16,7 @@ function Todo({id, task, completed, removeTodo, toggleTodo, editTodo }) {
          editTodo ={editTodo}
          id= {id} 
          task={task}
-         toggle ={toggle}
+         toggleEditForm ={toggle}
          />
         ): (
         <React.Fragment>

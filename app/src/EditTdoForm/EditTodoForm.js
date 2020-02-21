@@ -8,15 +8,16 @@ import TextField from '@material-ui/core/TextField';
 
 import usedInputState from '../hooks/useInputState';
 
-function EditTodoForm({id, task, editTodo}) {
+function EditTodoForm({id, task, editTodo, toggleEditForm}) {
     const [value, handleChange, reset] = usedInputState(task);
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
             editTodo(id, value);
             reset ();
+            toggleEditForm();
         }}>
-        <TextField margin= 'normal' value ={value} onChange= {handleChange} fullWidth>
+        <TextField margin= 'normal' value ={value} onChange={handleChange} fullWidth>
             
         </TextField>
         </form>
