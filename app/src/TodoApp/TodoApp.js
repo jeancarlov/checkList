@@ -23,27 +23,27 @@ function TodoApp() {
     const addTodo = newTodoText => {
         setTodos([ ...todos, { id: uuid(), task: newTodoText, completed: false}])
     };
-    const removeTodo= todoId => {
+    const removeTodo= todoId => { 
         // filter out removed todo
         const updatedTodos = todos.filter(todo => todo.id !== todoId);
         // call setTodos with new todos array
         setTodos(updatedTodos)
     };
 
-    // const toggleTodo = todoId => { 
-    //     const updatedTodos= todos.map(todo => 
-    //         todo.id === todoId? { ...todo, completed:  !todo.completed} : todo
-    //         );
-    //         setTodos(updatedTodos);
+    const toggleTodo = todoId => { 
+        const updatedTodos= todos.map(todo => 
+            todo.id === todoId? { ...todo, completed:  !todo.completed} : todo
+            );
+            setTodos(updatedTodos);
+        };
 
-    //Method for updating the editing in the textField for todo 
-        const editTodo = (todoId, newTask) => { 
-            const updatedTodos= todos.map(todo => 
+    const editTodo = (todoId, newTask) => { 
+        const updatedTodos= todos.map(todo => 
                 todo.id === todoId? { ...todo, task: newTask} : todo
                 );
-                setTodos(updatedTodos);
+                setTodos(updatedTodos);    
+    };
     
-    }
     return (
         <Paper 
             style={{
@@ -64,7 +64,7 @@ function TodoApp() {
                     <TodoForm addTodo={addTodo}/>
                     <TodoList todos={todos}
                     removeTodo={removeTodo}  
-                    
+                    toggleTodo={toggleTodo}
                     editTodo= {editTodo}
                     />
                 </Grid>
@@ -72,6 +72,7 @@ function TodoApp() {
         </Paper>
     );
 }
+
 
 
 export default TodoApp;
